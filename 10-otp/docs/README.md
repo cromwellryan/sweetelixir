@@ -69,7 +69,7 @@ iex -S mix
 
 ```
 # Start our host
-iex -S mix --name counter
+iex --name counter -S mix
 ```
 
 ```
