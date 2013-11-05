@@ -69,14 +69,14 @@ iex -S mix
 
 ```
 # Start our host
-iex --name counter -S mix
+iex --name counter@<ip> -S mix
 ```
 
 ```
 # Start client
-iex --name client1
+iex --name client1@<ip>
 
-Node.connect :"host@<Computer>"
+Node.connect :"host@<ip>"
 #> true
 
 :gen_server.cast( {:global, :counter}, :increment )
