@@ -19,6 +19,6 @@ defmodule Counter.Worker do
 
   def start_link() do
     IO.puts ":start_link"
-    :gen_server.start_link( { :local, :counter }, __MODULE__, 0, [] )
+    :gen_server.start_link( { :global, :counter }, __MODULE__, 0, [] )
   end
 end
