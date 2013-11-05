@@ -21,8 +21,9 @@ Contractual callbacks specific to your application.
 ## Supervisor.Behavior
 
 #### Strategies
-* one_for_one
-* ???
+* *one_for_one* 1 failure = 1 restart
+* *one_for_all* 1 failure = all restart
+* *rest_for_one* 1 failure = all restart
 
 ## GenServer.Behavior
 
@@ -64,6 +65,14 @@ iex -S mix
 ```
 # Start our host
 iex -S mix --name counter
+```
+
+```
+# Start client
+iex --name client1
+
+Node.connect :"host@<Computer>"
+#> true
 
 :gen_server.cast( {:global, :counter}, :increment )
 
