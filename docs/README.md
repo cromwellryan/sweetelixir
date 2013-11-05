@@ -12,13 +12,60 @@ Supervisors = Monitor workers / restart worker when bad things happen
 ## Behaviors
 Contractual callbacks specific to your application.
 
-* Supervisor
-* GenServer
-* Application
+* **Supervisor**
+* **GenServer**
+* GenFSM
+* GenEvent
+* **Application**
+
+## Supervisor.Behavior
+
+#### Strategies
+* one_for_one
+* ???
 
 ## GenServer.Behavior
 
-handle_cast // async - no response
+``init(initial_state)``
 
-handle_call // sync - response
--- Replies --
+``handle_cast``
+Asyncronous fire and forget call
+
+``handle_call``
+Syncronous call that (usually) implies a return value.
+
+``start_link``
+Called by the supervisor to get things running and return a pid for it to monitor
+
+## Running
+
+#### Locally
+```
+iex -S mix
+
+:gen_server.call(:counter, :stat)
+#> 0
+
+:gen_server.cast(:counter, :increment)
+:gen_server.cast(:counter, :increment)
+
+:gen_server.call(:counter, :stat)
+#> 2
+
+# worker blows up
+:gen_server.cast(:counter, :boom)
+
+:gen_server.call(:counter, :stat)
+#> 0
+```
+
+#### Distributed
+
+```
+# Start our host
+iex -S mix --name counter
+
+:gen_server.cast( {:global, :counter}, :increment )
+
+:gen_server.call( {:global, :counter}, :stat )
+```
