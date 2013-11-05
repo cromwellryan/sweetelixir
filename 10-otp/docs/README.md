@@ -1,3 +1,8 @@
+# *TODO*
+* Manual gen server (Chris's Stack.Custom)
+* What happens when they fail (pop with empty stack?)
+* Demo :global.whereis_name 
+
 # Open Telecom Platform (OTP)
 Patterns (behaviors) for structuring programs.
 
