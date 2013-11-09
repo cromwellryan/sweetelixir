@@ -69,12 +69,12 @@ iex -S mix
 
 ```
 # Start our host
-iex --name counter@<ip> -S mix
+mix --name --cookie foo counter@<ip>
 ```
 
 ```
 # Start client
-iex --name client1@<ip>
+iex --name --foo client1@<ip>
 
 Node.connect :"host@<ip>"
 #> true
