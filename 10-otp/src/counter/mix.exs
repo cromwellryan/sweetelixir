@@ -4,7 +4,7 @@ defmodule Counter.Mixfile do
   def project do
     [ app: :counter,
       version: "0.0.1",
-      elixir: "~> 0.10.3",
+      elixir: "~> 0.11.0",
       deps: deps ]
   end
 
