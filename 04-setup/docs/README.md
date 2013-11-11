@@ -1,6 +1,6 @@
 # Setting up your environment for Elixir support
 
-The only prerequisite for Elixir is Erlang, version R16B or later. Official [precompiled packages](https://www.erlang-solutions.com/downloads/download-erlang-otp) 
+The only prerequisite for Elixir is Erlang, version R16B or later. Official [precompiled packages](https://www.erlang-solutions.com/downloads/download-erlang-otp)
 are available for most platforms.
 
 To check your installed erlang version:
@@ -72,8 +72,8 @@ $ iex
 Erlang R16B (erts-5.10.1) [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 Interactive Elixir (0.10.3) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> IO.puts "Elixir Rocks!"
-Elixir Rocks!
+iex(1)> IO.puts "Sweet Elixir!"
+Sweet Elixir!
 :ok
 iex(2)>
 ```
