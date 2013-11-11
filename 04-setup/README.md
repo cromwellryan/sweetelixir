@@ -14,25 +14,25 @@ Erlang R16B (erts-5.10.1) ...
 
 ### Install via [homebrew](http://brew.sh/)
 
-  ```bash
-  $ brew update
-  $ brew install elixir
-  ```
+```bash
+$ brew update
+$ brew install elixir
+```
 
 
 # Linux
 
 ### Fedora 17+ and Fedora Rawhide
 
-    ```bash
-    $ sudo yum -y install elixir
-    ```
+```bash
+$ sudo yum -y install elixir
+```
 
 ### Arch Linux (on AUR)
 
-    ```bash
-    yaourt -S elixir
-    ```bash
+```bash
+$ yaourt -S elixir
+```
 
 ### openSUSE (and SLES 11 SP3+)
 
@@ -41,9 +41,9 @@ Erlang R16B (erts-5.10.1) ...
 
 ### Gentoo
 
-    ```bash
-    emerge --ask dev-lang/elixir
-    ```
+```bash
+$ emerge --ask dev-lang/elixir
+```
 
 # Windows
 
@@ -54,10 +54,10 @@ Install Erlang (R16B02) from the official [precompiled packages](https://www.erl
   - [Windows (64bit)](http://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_16.b.2-1~windows_amd64.exe)
 
 ### Install Elixir through [Chocolatey](http://chocolatey.org/)
-    
-    ```bash
-    > cinst elixir
-    ```
+
+```bash
+> cinst elixir
+```
 
 # Test your setup
 
