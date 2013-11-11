@@ -36,8 +36,8 @@ $ yaourt -S elixir
 
 ### openSUSE (and SLES 11 SP3+)
 
-    - Add Erlang devel repo with zypper ar -f obs://devel:languages:erlang/ erlang
-    - Install Elixir: `$ zypper in elixir`
+  - Add Erlang devel repo with zypper ar -f obs://devel:languages:erlang/ erlang
+  - Install Elixir: `$ zypper in elixir`
 
 ### Gentoo
 
