@@ -1,8 +1,9 @@
 # Setting up your environment for Elixir support
 
-The only prerequisite for Elixir is Erlang, version R16B or later.
+The only prerequisite for Elixir is Erlang, version R16B or later. Official [precompiled packages](https://www.erlang-solutions.com/downloads/download-erlang-otp) 
+are available for most platforms.
 
-Check your installed erlang version
+To check your installed erlang version:
 
 ```bash
 $ erl
@@ -16,6 +17,7 @@ Erlang R16B (erts-5.10.1) ...
 
 ```bash
 $ brew update
+$ brew install erlang
 $ brew install elixir
 ```
 
