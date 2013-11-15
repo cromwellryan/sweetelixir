@@ -9,8 +9,9 @@ Patterns (behaviors) for structuring programs.
 [Elixir-lang.org -> Getting Started -> Building OTP Applications with Mix](http://elixir-lang.org/getting_started/mix/2.html)
 
 ## Supervisor Tree
-Workers = Doers
 Supervisors = Monitor workers / restart worker when bad things happen
+
+Workers = Doers
 
 ![Supervisor Tree](images/supervisor_tree.png)
 
