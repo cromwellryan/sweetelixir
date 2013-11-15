@@ -7,10 +7,10 @@
 1. What is Erlang?
 1. What is Elixir?
 1. Why?
-1. Setup
-1. Tools
+1. [Setup][setup]
+1. [Tools][tools]
 
-## Basics
+## [Basics][basics]
 1. Types
 1. Functions
 1. Operators
@@ -25,7 +25,7 @@
 1. Pipeline
 1. Processes
 
-## Common Patterns/OTP
+## [Common Patterns/OTP][otp]
 
 1. Stack Server (manual)
 1. GenServer, Supervisors
@@ -35,3 +35,7 @@
 ## Web & DB
 
 [elixir-logo]: ./elixir-logo.png
+[setup]: ./04-setup/docs/README.md
+[tools]: ./06-tools/docs/README.md
+[basics]: ./07-basics/docs/README.md
+[otp]: ./10-otp/docs/README.md
