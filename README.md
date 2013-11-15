@@ -1,3 +1,9 @@
+# Sweet Elixir!
+
+![elixir-lang][elixir-logo]
+
+## Getting Started
+1. How to use this guide
 1. What is Erlang?
 1. What is Elixir?
 1. Why?
@@ -28,3 +34,4 @@
 
 ## Web & DB
 
+[elixir-logo]: ./elixir-logo.png
