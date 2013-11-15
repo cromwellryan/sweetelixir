@@ -7,7 +7,7 @@ Elixir ships with four binaries for compilation, project building, and more.
 - `elixir` executes compiled elixir files or elixir "scripts" (.exs files)
 - `elixirc` elixir compiler
 - `mix` elixir's fantastic build tool for project creation,
-   dependency mamagement, tasks, and more.
+   dependency management, tasks, and more.
 
 
 ## Interactive Elixir - The Elixir Shell
@@ -79,10 +79,10 @@ end
           mix test
 
       Run `mix help` for more information.
-```
+
 
 Mix creates a directory structure and application manifest that follows
-Erlang/OTP conventions and plays nicely with elixir applications.
+Erlang/OTP conventions and plays nicely with Erlang applications.
 
 - Source code lives in `lib/hello_elixir/src/`. Any `.ex` file you place in lib
   or subdirectories of lib will be automatically compiled and loaded by mix.
