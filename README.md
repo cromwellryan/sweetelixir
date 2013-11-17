@@ -1,14 +1,20 @@
 # Sweet Elixir!
+## A Gentle Introduction to Erlang’s cute younger brother Elixir
 
 ![elixir-lang][elixir-logo]
 
 ## Getting Started
-1. How to use this guide
 1. What is Erlang?
 1. What is Elixir?
 1. Why?
 1. [Setup][setup]
 1. [Tools][tools]
+
+## How to use
+Most of this guide will use `iex` (interactive elixir).  We'll try to let you know when we don't, but here are some guidelines...
+
+* `iex> command` means we're executing `command` in interactive elixir.
+* `$> elixir <filename>` means run the `elixir` command at terminal to execute the file.  These files will most likely be an `.exs`  or elixir script file.  These will usually be found within the `src/` folder for that particular module.
 
 ## [Basics][basics]
 1. Types
@@ -39,3 +45,4 @@
 [tools]: ./06-tools/docs/README.md
 [basics]: ./07-basics/docs/README.md
 [otp]: ./10-otp/docs/README.md
+
