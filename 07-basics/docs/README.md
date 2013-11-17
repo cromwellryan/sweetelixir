@@ -22,6 +22,8 @@ false
 iex> is_float 1.0
 true
 
+**boolean**
+
 iex> is_boolean true && false
 true
 
@@ -127,8 +129,17 @@ iex> head
 
 **equality**
 
+```
+iex> 1 == 1.0
+true
 
-- Operators
+iex> 1 === 1.0
+false
+
+iex> 1 < :thing
+true
+```
+
 - Functions (built in / anonymous)
 - and / &&
 - ...
