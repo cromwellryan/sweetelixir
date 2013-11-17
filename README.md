@@ -41,8 +41,8 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 ## Web & DB
 
 [elixir-logo]: ./elixir-logo.png
-[setup]: ./04-setup/docs/README.md
-[tools]: ./06-tools/docs/README.md
-[basics]: ./07-basics/docs/README.md
-[otp]: ./10-otp/docs/README.md
+[setup]: ./04-setup/README.md
+[tools]: ./06-tools/README.md
+[basics]: ./07-basics/README.md
+[otp]: ./10-otp/README.md
 
