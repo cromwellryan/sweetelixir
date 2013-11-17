@@ -63,10 +63,18 @@ iex> tail
 
 iex> [1,2] ++ [3,4]
 [1,2,3,4]
+
+iex> [1,2,3] -- [3,4]
+[1,2]
+
+iex> h Enum
+...
+
+iex> h Stream
+...
 ```
 
 **tuples**
-
 ```
 iex> is_tuple {1,"b", :c}
 true
@@ -91,6 +99,15 @@ iex> set_elem t, 2, :d
 
 iex> t
 {1, "b", :c}
+
+iex> elem t, 2
+"b"
+
+iex> Integer.parse "1.0a~22c"
+{1, ".0a~22c"}
+
+iex> Integer.parse "codemash"
+:error
 ```
 
 **strings (binaries) and char lists (lists)**
