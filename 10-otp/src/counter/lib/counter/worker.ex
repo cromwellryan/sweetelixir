@@ -27,8 +27,10 @@ defmodule Counter.Worker do
   end
 
   def handle_info(_msg, _state) do
+    IO.puts "handle_info"
   end
 
   def terminate(_reason, _state) do
+    IO.puts "terminate"
   end
 end
