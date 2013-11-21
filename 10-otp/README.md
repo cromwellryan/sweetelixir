@@ -75,7 +75,7 @@ mix --name --cookie foo counter@<ip>
 
 ```
 # Start client
-iex --name --foo client1@<ip>
+iex --name foo --cookie bar lastname@ip
 
 Node.connect :"host@<ip>"
 #> true
