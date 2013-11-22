@@ -159,6 +159,87 @@ iex> 1 < :thing
 true
 ```
 
+## Functions
+
+Like most functional languages, functions in Elixir are first class and can be passed around 
+and invoked from other functions.
+
+### Anonymous Functions
+
+Anonymous functions are defined with the `fn arg1, arg2 -> end` syntax and invoked via the "dot notation".
+
+```elixir
+iex(1)> add = fn num1, num2 ->
+...(1)>   num1 + num2
+...(1)> end
+#Function<12.17052888 in :erl_eval.expr/5>
+
+iex(2)> subtract = fn num1, num2 ->
+...(2)>   num1 - num2
+...(2)> end
+#Function<12.17052888 in :erl_eval.expr/5>
+
+iex(3)> perform_calculation = fn num1, num2, func ->
+...(3)>   func.(num1, num2)
+...(3)> end
+#Function<18.17052888 in :erl_eval.expr/5>
+
+iex(4)> perform_calculation.(5, 5, add)
+10
+iex(5)> perform_calculation.(5, 5, subtract)
+0
+iex(6)> perform_calculation.(5, 5, &(&1 * &2))
+25
+iex(7)>
+```
+
+The last examples showcases Elixir's **shorthand function** syntax and is sugar for:
+
+```elixir
+iex(6)> perform_calculation.(5, 5, fn a, b -> a * b end)
+25
+```
+
+The shorthand syntax is useful when the function takes one or two arguments and performs a simple operation. 
+More complex functions should use the general purpose syntax to optimize for clarity.
+
+### Named Functions
+
+Functions defined on Modules are referred to as **named functions**. Named functions are defined with the `def` syntax.
+
+```elixir
+defmodule Weather do
+
+  def temperature do
+    50
+  end
+  
+  def high, do: 55
+  def low, do: 32
+end
+
+iex> Weather.temperature
+50
+iex> Weather.low
+32
+```
+
+### Captured Functions
+
+Named functions can be **captured** and bound to a variable for cases where a reference is desired instead of invocation.
+
+```elixir
+iex(2)> add = &Kernel.+/2
+&Kernel.+/2
+iex(3)> add.(1, 2)
+3
+iex(4)>
+```
+
+Functions in Elixir are referenced by name and **arity**, or the number of arguments. The previous example captures 
+the `+` function from the `Kernel` module with arity 2, binds it to the `add` variable, and invokes it via the 
+dot notation.
+
 - Functions (built in / anonymous)
 - and / &&
 - ...
