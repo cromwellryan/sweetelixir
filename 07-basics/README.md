@@ -208,20 +208,22 @@ More complex functions should use the general purpose syntax to optimize for cla
 Functions defined on Modules are referred to as **named functions**. Named functions are defined with the `def` syntax.
 
 ```elixir
-defmodule Weather do
-
-  def temperature do
-    50
-  end
-  
-  def high, do: 55
-  def low, do: 32
-end
-
-iex> Weather.temperature
+iex(4)> defmodule Weather do
+...(4)>   def celsius_to_fahrenheit(celsius) do
+...(4)>     (celsius * 1.8) + 32
+...(4)>   end
+...(4)>
+...(4)>   def high, do: 50
+...(4)>   def low, do: 32
+...(4)> end
+{:module, Weather,
+ <<70, 79, 82, 49, 0, 0, 8, 116, 66, 69, 65, 77, 65, 116, 111, 109, 0, 0, 0, 133, 0, 0, 0, 13, 14, 69, 108, 105, 120, 105, 114, 46, 87, 101, 97, 116, 104, 101, 114, 8, 95, 95, 105, 110, 102, 111, 95, 95, 4, 100, ...>>,
+ {:low, 0}}
+iex(5)> Weather.high
 50
-iex> Weather.low
-32
+iex(6)> Weather.celsius_to_fahrenheit(20)
+68.0
+iex(7)>
 ```
 
 ### Captured Functions
@@ -240,7 +242,33 @@ Functions in Elixir are referenced by name and **arity**, or the number of argum
 the `+` function from the `Kernel` module with arity 2, binds it to the `add` variable, and invokes it via the 
 dot notation.
 
-- Functions (built in / anonymous)
+
+## Modules
+
+Our `Weather` module showcased Elixir Modules. Modules hold named functions, can import functions from other Modules,
+and use Macro's for extended functionality.
+
+```elixir
+iex(12)> defmodule Converter do
+...(12)>   alias :math, as: Math
+...(12)>   import Math, only: [pi: 0]
+...(12)>
+...(12)>   def degrees_to_radians(degrees) do
+...(12)>     degrees * (pi / 180)
+...(12)>   end
+...(12)>
+...(12)>   def sin_to_cos(x) do
+...(12)>     Math.cos(x - (pi/2))
+...(12)>   end
+...(12)> end
+{:module, Converter,
+ <<70, 79, 82, 49, 0, 0, 8, 140, 66, 69, 65, 77, 65, 116, 111, 109, 0, 0, 0, 143, 0, 0, 0, 14, 16, 69, 108, 105, 120, 105, 114, 46, 67, 111, 110, 118, 101, 114, 116, 101, 114, 8, 95, 95, 105, 110, 102, 111, 95, 95, ...>>,
+ {:sin_to_cos, 1}}
+iex(13)> Converter.degrees_to_radians(90)
+1.5707963267948966
+iex(14)> Converter.sin_to_cos(120)
+0.5806111842123187
+iex(15)>
+
+```
 - and / &&
-- ...
-- Modules (def / defp)
