@@ -258,7 +258,7 @@ iex(12)> defmodule Converter do
 ...(12)>   end
 ...(12)>
 ...(12)>   def sin_to_cos(x) do
-...(12)>     Math.cos(x - (pi/2))
+...(12)>     Math.cos(x - (pi / 2))
 ...(12)>   end
 ...(12)> end
 {:module, Converter,
