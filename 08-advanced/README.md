@@ -74,5 +74,6 @@ iex(13)> Countdown.run(10, 11)
     countdown.ex:3: Countdown.run(10, 11)
 ```
 
-By using *guard clauses* with the postfix `when` on function definitions. Multiple functions with the same name can be defined because the guard becomes part of the functions unique signature and each definition is pattern matched against when calling `run` until the first match is found.
+*Guard Clauses* are used with the postfix `when` on function definitions. Multiple functions with the same name can be defined because the guard becomes part of the function's unique signature. Each definition is pattern matched against when calling `run` until the first match is found. Patterm matching on functions is run from top to bottom, in the order the functions are defined.
+
 
