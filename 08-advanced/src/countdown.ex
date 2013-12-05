@@ -1,6 +1,6 @@
 defmodule Countdown do
 
-  def run(from, to) when from > to do
+  def run(from, to) when from >= to do
     run(from, to, from)
   end
 
