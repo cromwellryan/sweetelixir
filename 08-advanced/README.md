@@ -21,14 +21,44 @@ iex(8)> last
 3
 ```
 
-`^a = b` shows the syntax for pattern matching against a variable's value instead of performing assignment. Pattern matching is used throughout Elixir and Erlang programs for destructuring assignment as well as simple failure modes where a program is expected to crash unless a specific pattern is returned. Consider a program that opens a log file for writing database logs:
+`^a = b` shows the syntax for pattern matching against a variable's value instead of performing assignment.
+
+A common technique is to return a tuple from a function with the atom `:ok`, followed by the requested value. This allows the caller to pattern match against the return value and let the program crash when an unexpected error occurs:
 
 ```elixir
 iex(1)> {:ok, logger_pid} = DB.start_logger
 ```
 
-A common pattern is to return a tuple from a function with the atom `:ok`, followed by the requested value, as well as any set of tuples and error messages that the caller could be interested in. In the previous example, if `DB.start_logger` failed to open the log file and returned `{:error, :enoent}`, the program would crash with a `MatchError` since pattern matching was performed solely by the use of the `=` operator. This is useful where programs can take no other sane action than crashing, such as when a database's logger fails to open.
+If `DB.start_logger` failed to open the log file and returned `{:error, :enoent}`, the program would crash with a `MatchError` since pattern matching was performed solely by the use of the `=` operator. This is useful where programs can take no other sane action than crashing, such as when a database's logger fails to open.
 
+
+### Control Flow Pattern Matching
+
+Pattern matching can be used with the `case` keyword for powerful control flow handling. `case` pattern matches against each clause and invokes the first match. At least one clause must be matched or a `CaseClauseError` is raised.
+
+Let's write a mini calculation parser to perform a few basic operations:
+
+```elixir
+iex(1)> calculate = fn expression ->
+...(1)>   case expression do
+...(1)>     {:+, num1, num2} -> num1 + num2
+...(1)>     {:-, num1, num2} -> num1 - num2
+...(1)>     {:*, num1, 0}    -> 0
+...(1)>     {:*, num1, num2} -> num1 * num2
+...(1)>   end
+...(1)> end
+#Function<6.17052888 in :erl_eval.expr/5>
+
+iex(2)> calculate.({:+, 8, 2})
+10
+iex(3)> calculate.({:-, 8, 2})
+6
+iex(4)> calculate.({:*, 8, 2})
+16
+iex(5)> calculate.({:^, 8, 2})
+** (CaseClauseError) no case clause matching: {:^, 8, 2}
+iex(5)>
+```
 
 ### Function Pattern Matching
 Pattern matching is not just limited to bindings. Elixir uses pattern matching for anonymous and named function invocation as well.
@@ -36,7 +66,7 @@ Pattern matching is not just limited to bindings. Elixir uses pattern matching f
 `src/countdown.ex`:
 ```elixir
 defmodule Countdown do
-  def run(from, to) when from > to do
+  def run(from, to) when from >= to do
     run(from, to, from)
   end
 
