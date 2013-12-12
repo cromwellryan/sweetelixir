@@ -1,8 +1,3 @@
-# *TODO*
-* Manual gen server (Chris's Stack.Custom)
-* What happens when they fail (pop with empty stack?)
-* Demo :global.whereis_name 
-
 # Open Telecom Platform (OTP)
 Patterns (behaviors) for structuring programs.
 
@@ -68,16 +63,18 @@ iex -S mix
 
 #### Distributed
 
+*Note:* Erlang/Elixir communicates over port 4369 by default.  On locked down networks like public wifi run `epdm -port 80 -daemon` to tell Erlang/Elixir to communicate over port 80.
+
 ```
 # Start our host
-mix --name --cookie foo counter@<ip>
+mix --name stack@<ip> --cookie foo
 ```
 
 ```
 # Start client
-iex --name foo --cookie bar lastname@ip
+iex --name lastname@<ip> foo --cookie bar
 
-Node.connect :"host@<ip>"
+Node.connect :"stack@<ip>"
 #> true
 
 :gen_server.cast( {:global, :counter}, :increment )
