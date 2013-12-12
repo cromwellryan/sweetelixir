@@ -23,7 +23,7 @@ iex> is_float 1.0
 true
 ```
 
-**boolean**
+### boolean
 
 ```
 iex> is_boolean true && false
