@@ -1,5 +1,7 @@
 ## Records
-... some description of records purposes, et-al
+Records provide a way to store and access structured data.  Think of them as a
+hybrid between tuples and Keyword lists.  They can have default values
+convenient accessors
 
 ```
 defrecord Tweet, text: "", hash_tags: [], user_mentions: []
