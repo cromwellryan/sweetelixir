@@ -2,6 +2,13 @@
 
 Follow along - we'll be using `iex` (interactive elixir).
 
+## Operators
+comparison, boolean, arithmetic, and inclusion
+  - ==, !=, ===, !==, >, <, <=, >=
+  - and, or, not, !
+  - +, -, *, /
+  - in (inclusion operator)
+
 ## Types (int, float, atom, tuple, list, binary)
 
 **numbers**
@@ -271,4 +278,4 @@ iex(14)> Converter.sin_to_cos(120)
 iex(15)>
 
 ```
-- and / &&
+
