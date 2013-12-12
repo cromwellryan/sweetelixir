@@ -70,14 +70,14 @@ iex -S mix
 
 ```
 # Start our host
-mix --name --cookie foo counter@<ip>
+mix --name stack@<ip> --cookie foo
 ```
 
 ```
 # Start client
-iex --name foo --cookie bar lastname@ip
+iex --name lastname@<ip> foo --cookie bar
 
-Node.connect :"host@<ip>"
+Node.connect :"stack@<ip>"
 #> true
 
 :gen_server.cast( {:global, :counter}, :increment )
