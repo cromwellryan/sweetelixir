@@ -24,8 +24,7 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 1. Tuples
 
 ## Advanced
-1. Records
-1. Protocols
+1. [Records & Protocols][records_protocols]
 1. Pattern Matching
 1. Map/Reduce
 1. Pipeline
@@ -45,4 +44,5 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 [tools]: ./06-tools/README.md
 [basics]: ./07-basics/README.md
 [otp]: ./10-otp/README.md
+[records_protocols]: ./08-advanced/records_protocols.md
 
