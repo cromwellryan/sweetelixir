@@ -2,7 +2,7 @@ defmodule Stack.Server do
   use GenServer.Behaviour
 
   def start_link(initial_stack) do
-    :gen_server.start_link {:local, :stack_server}, __MODULE__, initial_stack, []
+    :gen_server.start_link {:global, :stack_server}, __MODULE__, initial_stack, []
   end
 
   def init(initial_stack) do

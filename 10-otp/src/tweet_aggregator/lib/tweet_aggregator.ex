@@ -4,6 +4,13 @@ defmodule TweetAggregator do
   # See http://elixir-lang.org/docs/stable/Application.Behaviour.html
   # for more information on OTP Applications
   def start(_type, _args) do
+    :ssl.start
+    :inets.start
     TweetAggregator.Supervisor.start_link
+  end
+
+  def become_leader do
+    TweetAggregator.Aggregator.start_link
+    TweetAggregator.GateKeeper.register_as_leader
   end
 end
