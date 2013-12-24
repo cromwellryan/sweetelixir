@@ -1,4 +1,4 @@
-defmodule TweetAggregator.Tweet.Supervisor do
+defmodule TweetAggregator.Search.Supervisor do
   use Supervisor.Behaviour
 
   def stop(server_name) do
@@ -10,7 +10,7 @@ defmodule TweetAggregator.Tweet.Supervisor do
   end
 
   def init([server_name, query]) do
-    tree = [worker(TweetAggregator.Tweet.Server, [server_name, query])]
+    tree = [worker(TweetAggregator.Search.Server, [server_name, query])]
     supervise tree, strategy: :one_for_all
   end
 

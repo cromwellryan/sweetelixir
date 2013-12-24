@@ -1,10 +1,10 @@
-defmodule TweetAggregator.Tweet.Client do
+defmodule TweetAggregator.Search.Client do
   alias TweetAggregator.GateKeeper
   alias TweetAggregator.Aggregator
-  alias TweetAggregator.Tweet.Supervisor
+  alias TweetAggregator.Search.Supervisor
 
   @base_url "https://api.twitter.com/1.1/"
-  @limit 10
+  @limit 1
 
   defrecord Status, id: nil, text: nil, username: nil
   defrecord Query, subscriber: nil, keywords: [], options: [], seen_ids: []
@@ -20,15 +20,15 @@ defmodule TweetAggregator.Tweet.Client do
       options: options,
     ))
     Process.whereis(server_name) <- :poll
-    do_poll
+    do_poll(server_name)
   end
-  defp do_poll do
+  defp do_poll(server_name) do
     receive do
       {:results, results} -> 
-        IO.puts "Got #{Enum.count results} result(s)"
-        Enum.each results, &Aggregator.notify(&1)
+        IO.puts "Client: Got #{Enum.count results} result(s)"
+        Enum.each results, &Aggregator.notify(server_name, &1)
     end
-    do_poll
+    do_poll(server_name)
   end
 
   def search(keywords, options // []) do

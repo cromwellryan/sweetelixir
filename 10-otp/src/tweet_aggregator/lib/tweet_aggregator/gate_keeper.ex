@@ -1,7 +1,7 @@
 defmodule TweetAggregator.GateKeeper do
   @moduledoc """
-  GateKeeper is a module that allows Nodes to retreive credentials from a 
-  leader node containing evironment variables for oauth signing
+  GateKeeper is a module that allows Nodes to retrieve credentials from a 
+  leader node containing environment variables for oauth signing
 
   The follow Twitter OAuth environment variables are held by the GateKeeper:
 
