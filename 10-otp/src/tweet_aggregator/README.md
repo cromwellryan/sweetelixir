@@ -35,7 +35,7 @@ iex(aggregator@127.0.0.1)1> TweetAggregator.become_leader
 :yes
 ```
 
- ### 3. Start client search node(s)
+### 3. Start client search node(s)
 
 ```bash
 $ iex --name client1@127.0.0.1 -S mix
