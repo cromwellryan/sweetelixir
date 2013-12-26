@@ -4,7 +4,7 @@ defmodule TweetAggregator.Mixfile do
   def project do
     [ app: :tweet_aggregator,
       version: "0.0.1",
-      elixir: "~> 0.11.3-dev",
+      elixir: "~> 0.11 or ~> 0.12",
       deps: deps ]
   end
 

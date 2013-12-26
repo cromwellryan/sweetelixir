@@ -4,7 +4,7 @@ defmodule HelloElixir.Mixfile do
   def project do
     [ app: :hello_elixir,
       version: "0.0.1",
-      elixir: "~> 0.11.2",
+      elixir: "~> 0.11 or ~> 0.12",
       deps: deps ]
   end
 

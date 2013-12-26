@@ -4,7 +4,7 @@ defmodule Stack.Mixfile do
   def project do
     [ app: :stack,
       version: "0.0.1",
-      elixir: ">= 0.11",
+      elixir: "~> 0.11 or ~> 0.12",
       deps: deps ]
   end
 
