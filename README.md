@@ -26,7 +26,7 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 ## Advanced
 1. [Records & Protocols][records_protocols]
 1. [Pattern Matching][pattern_matching]
-1. Map/Reduce
+1. [Map/Reduce][map_reduce]
 1. Pipeline
 1. Processes
 
@@ -46,4 +46,5 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 [otp]: ./10-otp/README.md
 [pattern_matching]: ./08-advanced/pattern_matching.md
 [records_protocols]: ./08-advanced/records_protocols.md
+[map_reduce]: ./08-advanced/map_reduce.md
 
