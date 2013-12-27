@@ -116,3 +116,20 @@ iex(13)> receive do
 ...(13)> end
 13
 ```
+
+## Registered Processes
+Pids can be registered under a name for easy lookup by other processes
+
+```elixir
+iex(26)> pid = Counter.start 10
+iex(27)> Process.register pid, :count
+true
+iex(28)> Process.whereis(:count) == pid
+true
+iex(29)> :count <- :inc
+:inc
+iex(30)> receive do
+...(30)>   value -> value
+...(30)> end
+11
+```
