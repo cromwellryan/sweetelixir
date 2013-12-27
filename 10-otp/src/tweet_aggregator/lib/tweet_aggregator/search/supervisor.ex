@@ -11,7 +11,7 @@ defmodule TweetAggregator.Search.Supervisor do
 
   def init([server_name, query]) do
     tree = [worker(TweetAggregator.Search.Server, [server_name, query])]
-    supervise tree, strategy: :one_for_all
+    supervise tree, strategy: :one_for_one
   end
 
   defp name(server_name) do

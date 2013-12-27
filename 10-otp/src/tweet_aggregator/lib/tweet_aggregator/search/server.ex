@@ -10,23 +10,23 @@ defmodule TweetAggregator.Search.Server do
   end
 
   def init([query]) do
-    :timer.send_interval(@poll_every_ms, :poll)
-    {:ok, query}
+    Process.flag(:trap_exit, true)
+    {:ok, timer} = :timer.send_interval(@poll_every_ms, :poll)
+    {:ok, {timer, query}}
   end
 
-  def handle_info(:poll, query) do
+  def handle_info(:poll, {timer, query}) do
     {:ok, statuses} = Client.search(query.keywords, query.options)
     if new_results?(statuses, query) do
-      IO.puts "New results"
       query.subscriber <- {:results, statuses}
-      {:noreply, record_seen_ids(statuses, query)}
+      {:noreply, {timer, record_seen_ids(statuses, query)}}
     else
       IO.puts "No new results"
-      {:noreply, query}
+      {:noreply, {timer, query}}
     end
   end
 
-  def record_seen_ids(statuses, query = Query[seen_ids: seen_ids]) do
+  def record_seen_ids(statuses, query) do
     query.seen_ids(query.seen_ids ++ seen_ids(statuses))
   end
 
@@ -36,6 +36,12 @@ defmodule TweetAggregator.Search.Server do
 
   def seen_ids(statuses) do
     statuses |> Enum.map(&(&1.id))
+  end
+
+  def terminate(:shutdown, {timer, query}) do
+    :timer.cancel(timer)
+    Process.exit query.subscriber, :kill
+    :ok
   end
 end
 

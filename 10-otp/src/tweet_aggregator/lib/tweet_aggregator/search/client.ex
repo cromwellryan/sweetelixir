@@ -9,26 +9,28 @@ defmodule TweetAggregator.Search.Client do
   defrecord Status, id: nil, text: nil, username: nil
   defrecord Query, subscriber: nil, keywords: [], options: [], seen_ids: []
 
-  def start(server_name, options) do
-    Supervisor.start_link(server_name)
-  end
+  def server_name, do: :"#{node}_search_server"
+  def server_pid, do: Process.whereis(server_name)
 
-  def poll(server_name, keywords, options) do
+  def poll(keywords, options // []) do
     Supervisor.start_link(server_name, Query.new(
-      subscriber: self,
+      subscriber: spawn(fn -> do_poll end),
       keywords: keywords,
       options: options,
     ))
-    Process.whereis(server_name) <- :poll
-    do_poll(server_name)
+    server_pid <- :poll
   end
-  defp do_poll(server_name) do
+  defp do_poll do
     receive do
       {:results, results} -> 
-        IO.puts "Client: Got #{Enum.count results} result(s)"
+        IO.puts "Client: Notifying Aggregator of #{Enum.count results} result(s)"
         Enum.each results, &Aggregator.notify(server_name, &1)
     end
-    do_poll(server_name)
+    do_poll
+  end
+
+  def stop do
+    Supervisor.stop(server_name)
   end
 
   def search(keywords, options // []) do
