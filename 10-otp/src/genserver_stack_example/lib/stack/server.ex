@@ -34,6 +34,6 @@ defmodule Stack.Client do
   end
 
   def pop do
-    :gen_server.call :stack_server, :pop
+    :gen_server.call {:global, :stack_server}, :pop
   end
 end
