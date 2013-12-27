@@ -4,7 +4,7 @@ Elixir processes are fast and lightweight units of concurrency. Not to be confus
 ## spawn
 Spawn creates a new process and returns the Pid, or Process ID of the new process. Messages are sent to the processes using the `<-` operator.
 
-### Mailboxes
+## Mailboxes
 Processes all contain a *mailbox* where messages are passively kept until consumed via a `receive` block. `receive` processes message in the order received and allows messages to be pattern matched. A common pattern is to send a message to a process with a tuple containing `self` as the first element. This allows the receiving process to have a reference to message's "sender" and respond back to the sider Pid with its own response messages.
 
 ```elixir
@@ -76,3 +76,38 @@ iex(5)>
 
 The first example above using `spawn_link`, we see the process terminate cascade to our own iex session from the `** (EXIT from #PID<0.64.0>)` error. Our iex session stays alive because it is internally restarted by a process Supervisor. Supervisors are covered in the next section on OTP.
 
+## Holding State
+Since Elixir is immutable, you may be wondering how state is held. Holding and mutating state can be performed by spawning a process that exposes its state via messages and infinitely recurses on itself with its current state. For example:
+
+```elixir
+iex(6)> defmodule Counter do
+...(6)>   def start(initial_count) do
+...(6)>     spawn fn -> listen(initial_count) end
+...(6)>   end
+...(6)>
+...(6)>   def listen(count) do
+...(6)>     receive do
+...(6)>       :inc -> listen(count + 1)
+...(6)>       {sender, :val} ->
+...(6)>         sender <- count
+...(6)>         listen(count)
+...(6)>     end
+...(6)>   end
+...(6)> end
+{:module, Counter,...
+
+iex(8)> counter_pid = Counter.start(10)
+#PID<0.140.0>
+iex(9)> counter_pid <- :inc
+:inc
+iex(10)> counter_pid <- :inc
+:inc
+iex(11)> counter_pid <- :inc
+:inc
+iex(12)> counter_pid <- {self, :val}
+{#PID<0.40.0>, :val}
+iex(13)> receive do
+...(13)>   value -> value
+...(13)> end
+13
+```
