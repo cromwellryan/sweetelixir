@@ -64,8 +64,7 @@ Error in process <0.64.0> with exit value: {{'Elixir.RuntimeError','__exception_
 
 
 
-
-## iex(3)> pid = spawn fn ->
+iex(3)> pid = spawn fn ->
 ...(3)>   receive do
 ...(3)>     :boom -> raise "boom!"
 ...(3)>   end
