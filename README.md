@@ -50,3 +50,5 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 [map_reduce]: ./08-advanced/map_reduce.md
 [pipeline]: ./08-advanced/pipeline.md
 [cheetsheet]: http://media.pragprog.com/titles/elixir/ElixirCheat.pdf
+[operators]: ./07-basics/README.md#operators
+[modules]: ./07-basics/README.md#modules
