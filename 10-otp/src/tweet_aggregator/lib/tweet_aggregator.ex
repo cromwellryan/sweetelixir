@@ -8,9 +8,4 @@ defmodule TweetAggregator do
     :inets.start
     TweetAggregator.Supervisor.start_link
   end
-
-  def become_leader do
-    TweetAggregator.Aggregator.start_link
-    TweetAggregator.GateKeeper.register_as_leader
-  end
 end

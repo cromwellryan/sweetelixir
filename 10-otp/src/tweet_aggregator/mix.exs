@@ -10,7 +10,9 @@ defmodule TweetAggregator.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [mod: { TweetAggregator, [] }]
+    [
+      mod: { TweetAggregator, [] },
+    ]
   end
 
   # Returns the list of dependencies in the format:
@@ -20,7 +22,6 @@ defmodule TweetAggregator.Mixfile do
   # { :barbat, "~> 0.1", github: "elixir-lang/barbat" }
   defp deps do
     [
-      {:httpotion, "0.2.3", github: "myfreeweb/httpotion"},
       {:oauth, github: "tim/erlang-oauth"},
       {:jsx, github: "talentdeficit/jsx"}
     ]

@@ -1,3 +1,3 @@
-defmodule TweetAggregator.Report do
+defmodule TweetAggregator.Reporter do
 
 end

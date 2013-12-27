@@ -2,6 +2,16 @@ defmodule TweetAggregator.Aggregator do
   use GenServer.Behaviour
   alias TweetAggregator.Search.Client.Status
 
+  def become_leader do
+    start_link
+  end
+
+  def leader_pid do
+    :global.whereis_name :aggregator
+  end
+
+  def has_leader?, do: leader_pid !== :undefined
+
   def start_link do
     :gen_server.start_link({:global, :aggregator}, __MODULE__, [], [])
   end
