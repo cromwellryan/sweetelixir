@@ -1,24 +1,25 @@
 # Processes - Elixir's Unit of Concurrency
 Elixir processes are fast and lightweight units of concurrency. Not to be confused with OS processes, millions of them can be spawned on a single machine, and each are managed entirely by the Erlang VM. Processes live at the core of Elixir application architectures and can send and receive messages to other processes located locally, or remotely on another connected Node.
 
-## spawn
+### spawn
 Spawn creates a new process and returns the Pid, or Process ID of the new process. Messages are sent to the processes using the `<-` operator.
 
-## Mailboxes
-Processes all contain a *mailbox* where messages are passively kept until consumed via a `receive` block. `receive` processes message in the order received and allows messages to be pattern matched. A common pattern is to send a message to a process with a tuple containing `self` as the first element. This allows the receiving process to have a reference to message's "sender" and respond back to the sider Pid with its own response messages.
+### Mailboxes
+Processes all contain a *mailbox* where messages are passively kept until consumed via a `receive` block. `receive` processes message in the order received and allows messages to be pattern matched. A common pattern is to send a message to a process with a tuple containing `self` as the first element. This allows the receiving process to have a reference to message's "sender" and respond back to the sender Pid with its own response messages.
 
 ```elixir
 iex(3)> pid = spawn fn ->
 ...(3)>   receive do
 ...(3)>     {sender, :ping} ->
-...(3)>       IO.puts "ping"
+...(3)>       IO.puts "Got ping"
 ...(3)>       sender <- :pong
 ...(3)>   end
 ...(3)> end
 #PID<0.79.0>
+
 iex(4)> pid <- {self, :ping}
 {#PID<0.58.0>, :ping}
-ping
+Got ping
 
 iex(5)> receive do
 ...(5)>   message -> IO.puts "Got #{message} back"
@@ -51,6 +52,7 @@ iex(1)> pid = spawn_link fn ->
 ...(1)>   end
 ...(1)> end
 #PID<0.64.0>
+
 iex(2)> pid <- :boom
 :boom
 iex(3)>
@@ -59,7 +61,10 @@ Error in process <0.64.0> with exit value: {{'Elixir.RuntimeError','__exception_
 
 ** (EXIT from #PID<0.64.0>) {RuntimeError[message: "boom!"], [{:erlang, :apply, 2, []}]}
 
-## iex(3)> pid = spawn fn ->
+
+
+
+iex(3)> pid = spawn fn ->
 ...(3)>   receive do
 ...(3)>     :boom -> raise "boom!"
 ...(3)>   end
@@ -72,9 +77,9 @@ iex(4)> pid <- :boom
 Error in process <0.71.0> with exit value: {{'Elixir.RuntimeError','__exception__',<<5 bytes>>},[{erlang,apply,2,[]}]}
 
 iex(5)>
-``` 
+```
 
-The first example above using `spawn_link`, we see the process terminate cascade to our own iex session from the `** (EXIT from #PID<0.64.0>)` error. Our iex session stays alive because it is internally restarted by a process Supervisor. Supervisors are covered in the next section on OTP.
+The first example above using `spawn_link`, we see the process termination cascade to our own iex session from the `** (EXIT from #PID<0.64.0>)` error. Our iex session stays alive because it is internally restarted by a process Supervisor. Supervisors are covered in the next section on OTP.
 
 ## Holding State
 Since Elixir is immutable, you may be wondering how state is held. Holding and mutating state can be performed by spawning a process that exposes its state via messages and infinitely recurses on itself with its current state. For example:
