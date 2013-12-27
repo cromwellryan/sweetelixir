@@ -5,8 +5,8 @@ Patterns (behaviors) for structuring programs.
 
 ## Holding state
 
-- [Custom Stack Server](10-otp/src/genserver_stack_example)
-- [GenServer Stack Server](10-otp/src/genserver_stack_example)
+- [Custom Stack Server](src/genserver_stack_example)
+- [GenServer Stack Server](src/genserver_stack_example)
 
 ## Supervisor Tree
 Supervisors = Monitor workers / restart worker when bad things happen
