@@ -3,6 +3,11 @@ Patterns (behaviors) for structuring programs.
 
 [Elixir-lang.org -> Getting Started -> Building OTP Applications with Mix](http://elixir-lang.org/getting_started/mix/2.html)
 
+## Holding state
+
+- [Custom Stack Server](10-otp/src/genserver_stack_example)
+- [GenServer Stack Server](10-otp/src/genserver_stack_example)
+
 ## Supervisor Tree
 Supervisors = Monitor workers / restart worker when bad things happen
 
