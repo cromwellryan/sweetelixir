@@ -17,11 +17,12 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 * `$> elixir <filename>` means run the `elixir` command at terminal to execute the file.  These files will most likely be an `.exs`  or elixir script file.  These will usually be found within the `src/` folder for that particular module.
 
 ## [Basics][basics]
-1. Types
+1. Numbers, atoms, strings, lists, tuples, ...
 1. Functions
-1. Operators
-1. Modules
-1. Tuples
+1. [Operators][operators]
+1. [Modules][modules]
+
+[Cheatsheet][cheetsheet]
 
 ## Advanced
 1. [Records & Protocols][records_protocols]
@@ -48,3 +49,4 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 [records_protocols]: ./08-advanced/records_protocols.md
 [map_reduce]: ./08-advanced/map_reduce.md
 [pipeline]: ./08-advanced/pipeline.md
+[cheetsheet]: http://media.pragprog.com/titles/elixir/ElixirCheat.pdf
