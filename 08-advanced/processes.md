@@ -1,24 +1,25 @@
 # Processes - Elixir's Unit of Concurrency
 Elixir processes are fast and lightweight units of concurrency. Not to be confused with OS processes, millions of them can be spawned on a single machine, and each are managed entirely by the Erlang VM. Processes live at the core of Elixir application architectures and can send and receive messages to other processes located locally, or remotely on another connected Node.
 
-## spawn
+### spawn
 Spawn creates a new process and returns the Pid, or Process ID of the new process. Messages are sent to the processes using the `<-` operator.
 
 ### Mailboxes
-Processes all contain a *mailbox* where messages are passively kept until consumed via a `receive` block. `receive` processes message in the order received and allows messages to be pattern matched. A common pattern is to send a message to a process with a tuple containing `self` as the first element. This allows the receiving process to have a reference to message's "sender" and respond back to the sider Pid with its own response messages.
+Processes all contain a *mailbox* where messages are passively kept until consumed via a `receive` block. `receive` processes message in the order received and allows messages to be pattern matched. A common pattern is to send a message to a process with a tuple containing `self` as the first element. This allows the receiving process to have a reference to message's "sender" and respond back to the sender Pid with its own response messages.
 
 ```elixir
 iex(3)> pid = spawn fn ->
 ...(3)>   receive do
 ...(3)>     {sender, :ping} ->
-...(3)>       IO.puts "ping"
+...(3)>       IO.puts "Got ping"
 ...(3)>       sender <- :pong
 ...(3)>   end
 ...(3)> end
 #PID<0.79.0>
+
 iex(4)> pid <- {self, :ping}
 {#PID<0.58.0>, :ping}
-ping
+Got ping
 
 iex(5)> receive do
 ...(5)>   message -> IO.puts "Got #{message} back"
