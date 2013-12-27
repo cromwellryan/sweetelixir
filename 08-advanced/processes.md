@@ -52,6 +52,7 @@ iex(1)> pid = spawn_link fn ->
 ...(1)>   end
 ...(1)> end
 #PID<0.64.0>
+
 iex(2)> pid <- :boom
 :boom
 iex(3)>
@@ -59,6 +60,10 @@ iex(3)>
 Error in process <0.64.0> with exit value: {{'Elixir.RuntimeError','__exception__',<<5 bytes>>},[{erlang,apply,2,[]}]}
 
 ** (EXIT from #PID<0.64.0>) {RuntimeError[message: "boom!"], [{:erlang, :apply, 2, []}]}
+
+
+
+
 
 ## iex(3)> pid = spawn fn ->
 ...(3)>   receive do
@@ -75,5 +80,5 @@ Error in process <0.71.0> with exit value: {{'Elixir.RuntimeError','__exception_
 iex(5)>
 ``` 
 
-The first example above using `spawn_link`, we see the process terminate cascade to our own iex session from the `** (EXIT from #PID<0.64.0>)` error. Our iex session stays alive because it is internally restarted by a process Supervisor. Supervisors are covered in the next section on OTP.
+The first example above using `spawn_link`, we see the process termination cascade to our own iex session from the `** (EXIT from #PID<0.64.0>)` error. Our iex session stays alive because it is internally restarted by a process Supervisor. Supervisors are covered in the next section on OTP.
 
