@@ -58,6 +58,6 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 [cheetsheet]: http://media.pragprog.com/titles/elixir/ElixirCheat.pdf
 [operators]: ./07-basics/README.md#operators
 [functions]: ./07-basics/README.md#functions
-[types]: ./07-basics/README.md#types
+[types]: ./07-basics/README.md#types-int-float-atom-tuple-list-binary
 [modules]: ./07-basics/README.md#modules
 
