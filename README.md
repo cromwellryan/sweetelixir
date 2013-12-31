@@ -34,16 +34,14 @@
 
 1. Stack Server (manual)
 1. GenServer, Supervisors
-
-## Distributed Elixir
+1. [Distributed Elixir, Tweet Aggregator][distributed_tweets]
 
 ## Web & DB
 
 [elixir-logo]: ./elixir-logo.png
-[setup]: ./04-setup/README.md
+[setup]: ./setup/README.md
 [tools]: ./06-tools/README.md
 [basics]: ./07-basics/README.md
-[otp]: ./10-otp/README.md
 [pattern_matching]: ./08-advanced/pattern_matching.md
 [records_protocols]: ./08-advanced/records_protocols.md
 [processes]: ./08-advanced/processes.md
@@ -54,4 +52,6 @@
 [functions]: ./07-basics/README.md#functions
 [types]: ./07-basics/README.md#types-int-float-atom-tuple-list-binary
 [modules]: ./07-basics/README.md#modules
+[otp]: ./otp/README.md
+[distributed_tweets]: ./otp/src/tweet_aggregator
 
