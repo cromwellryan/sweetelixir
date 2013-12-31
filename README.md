@@ -32,7 +32,7 @@
 
 ## [Common Patterns/OTP][otp]
 
-1. Stack Server (manual)
+1. [Stack Server (manual)][custom_stack_server]
 1. GenServer, Supervisors
 1. [Distributed Elixir, Tweet Aggregator][distributed_tweets]
 
@@ -53,5 +53,5 @@
 [types]: ./07-basics/README.md#types-int-float-atom-tuple-list-binary
 [modules]: ./07-basics/README.md#modules
 [otp]: ./otp/README.md
+[custom_stack_server]: ./otp/src/customstack.md
 [distributed_tweets]: ./otp/src/tweet_aggregator
-
