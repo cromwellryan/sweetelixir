@@ -14,13 +14,9 @@ defmodule Stack.CustomServer do
     end
   end
 
-  def handle_pop(sender, []) do
-    sender <- nil
-    listen []
-  end
-  def handle_pop(sender, stack) do
-    sender <- hd(stack)
-    listen tl(stack)
+  def handle_pop(sender, [head|tail]) do
+    sender <- head
+    listen tail
   end
 end
 
