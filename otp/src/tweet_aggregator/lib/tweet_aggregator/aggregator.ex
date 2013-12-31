@@ -20,13 +20,13 @@ defmodule TweetAggregator.Aggregator do
     {:ok, []}
   end
 
-  def handle_cast({:status, server_name, status}, statuses) do
+  def handle_cast({:push, server_name, status}, statuses) do
     log(server_name, status)
     {:noreply, [status | statuses]}
   end
 
-  def notify(server_name, status) do
-    :gen_server.cast {:global, :aggregator}, {:status, server_name, status}
+  def push(server_name, status) do
+    :gen_server.cast {:global, :aggregator}, {:push, server_name, status}
   end
 
   defp log(server_name, Status[text: text, username: username]) do

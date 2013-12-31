@@ -22,9 +22,9 @@ defmodule TweetAggregator.Search.Client do
   end
   defp do_poll do
     receive do
-      {:results, results} -> 
+      {:results, results} ->
         IO.puts "Client: Notifying Aggregator of #{Enum.count results} result(s)"
-        Enum.each results, &Aggregator.notify(server_name, &1)
+        Enum.each results, &Aggregator.push(server_name, &1)
     end
     do_poll
   end
