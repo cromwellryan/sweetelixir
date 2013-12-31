@@ -30,7 +30,7 @@ $ source .env
 ### 2. Start GateKeeper node
 
 ```bash
-$ iex --name gatekeeper@127.0.0.1 -S mix
+$ iex --name gatekeeper@127.0.0.1 --cookie foo -S mix
 iex(gatekeeper@127.0.0.1)1> TweetAggregator.GateKeeper.become_leader
 :yes
 ```
@@ -38,7 +38,7 @@ iex(gatekeeper@127.0.0.1)1> TweetAggregator.GateKeeper.become_leader
 ### 2. Start Aggregator node
 
 ```bash
-$ iex --name aggregator@127.0.0.1 -S mix
+$ iex --name aggregator@127.0.0.1 --cookie foo -S mix
 iex(aggregator@127.0.0.1)1> TweetAggregator.Aggregator.become_leader
 :yes
 ```
@@ -46,7 +46,7 @@ iex(aggregator@127.0.0.1)1> TweetAggregator.Aggregator.become_leader
 ### 3. Start client search node(s)
 
 ```bash
-$ iex --name client1@127.0.0.1 -S mix
+$ iex --name client1@127.0.0.1 --cookie foo -S mix
 iex(client1@127.0.0.1)1> Node.connect :"aggregator@127.0.0.1"
 true
 NodeMonitor: aggregator@127.0.0.1 joined
