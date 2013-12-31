@@ -2,7 +2,7 @@ defmodule Stack.CustomServer do
 
   def start(initial_stack) do
     spawn_link fn -> 
-      Process.register :custom_server, self
+      Process.register self, :custom_server
       listen initial_stack
     end
   end
@@ -11,6 +11,9 @@ defmodule Stack.CustomServer do
     receive do
       {sender, :pop} -> handle_pop(sender, stack)
       {:push, value} -> listen([value|stack])
+    after 2000 ->
+      IO.puts "Nothing to do"
+      listen stack
     end
   end
 
