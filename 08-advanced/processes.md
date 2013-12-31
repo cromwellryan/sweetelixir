@@ -81,6 +81,38 @@ iex(5)>
 
 The first example above using `spawn_link`, we see the process termination cascade to our own iex session from the `** (EXIT from #PID<0.64.0>)` error. Our iex session stays alive because it is internally restarted by a process Supervisor. Supervisors are covered in the next section on OTP.
 
+## Parallelizing Tasks
+With the simple spawn/receive mechanisms, tasks can be parallelized with code that is easy to comprehend. Consider a `Maps` module that contains a `map` function which iterates over a list and invokes a provided function for each element. A parallelized version `pmap` can be written which simply spawns a new process for each element invocation and colllects the results from each process before returning.  For example:
+
+```elixir
+defmodule Maps do
+ 
+  def map([], _), do: []
+  def map([h|t], func), do: [ func.(h) | map(t, func) ]
+ 
+  def child(element, func, parent) do
+    parent <- func.(element)
+  end
+  defp spawn_children(collection, func) do
+    map collection, fn element -> spawn(__MODULE__, :child, [element, func, self]) end
+  end
+ 
+  defp collect_results(pids) do
+    map pids, fn _ -> receive do: ( value -> value) end
+  end
+ 
+  def pmap(collection, func) do
+    collection |> spawn_children(func) |> collect_results
+  end
+end
+
+iex(2)> Maps.map [1, 2, 3], &(&1 * &1)
+[1, 4, 9]
+iex(3)> Maps.pmap [1, 2, 3], &(&1 * &1)
+[1, 4, 9]
+iex(4)>
+```
+
 ## Holding State
 Since Elixir is immutable, you may be wondering how state is held. Holding and mutating state can be performed by spawning a process that exposes its state via messages and infinitely recurses on itself with its current state. For example:
 

@@ -1,8 +1,6 @@
 ## Pipeline
 
-The pipeline is a very simple, but powerful tool in Elixir.  Using
-the pipeline operator `|>` we can easily visualize the transformation of data
-- which is what our programs do!
+The pipeline is a very simple, but powerful tool in Elixir.  Using the pipeline operator `|>` we can easily visualize the transformation of data - which is what our programs do!
 
 
 **Before Pipeline**
