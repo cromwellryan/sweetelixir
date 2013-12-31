@@ -2,15 +2,15 @@ defmodule Stack.CustomServer do
 
   def start(initial_stack) do
     spawn_link fn -> 
-      :global.register_name :custom_server, self
+      Process.register :custom_server, self
       listen initial_stack
     end
   end
 
   def listen(stack) do
     receive do
-      {sender, :pop}         -> handle_pop(sender, stack)
-      {sender, :push, value} -> listen([value|stack])
+      {sender, :pop} -> handle_pop(sender, stack)
+      {:push, value} -> listen([value|stack])
     end
   end
 
@@ -27,7 +27,7 @@ end
 
 defmodule Stack.CustomClient do
   def push(value) do
-    server_pid <- {self, :push, value}
+    server_pid <- {:push, value}
   end
 
   def pop do
@@ -38,6 +38,6 @@ defmodule Stack.CustomClient do
   end
 
   defp server_pid do
-    :global.whereis_name :custom_server
+    Process.whereis :custom_server
   end
 end
