@@ -1,7 +1,7 @@
 defmodule Stack.CustomServer do
 
   def start(initial_stack) do
-    spawn_link fn -> 
+    spawn_link fn ->
       Process.register self, :custom_server
       listen initial_stack
     end
@@ -22,7 +22,6 @@ defmodule Stack.CustomServer do
     listen tail
   end
 end
-
 
 defmodule Stack.CustomClient do
   def push(value) do

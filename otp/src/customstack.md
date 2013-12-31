@@ -5,11 +5,12 @@
 $> iex customstack.exs
 ```
 ```elixir
+iex> Stack.CustomServer.start []
 iex> :custom_server <- { :push, 10 }
 iex> :custom_server <- { :self, :pop }
 ```
 
-###iex manual receive 
+###iex manual receive
 
 ```elixir
 receive do
@@ -23,8 +24,8 @@ end
 ```elixir
 defmodule Stack.CustomServer do
   def start(initial_stack) do
-    spawn_link fn -> 
-      :process.register_name :custom_server, self
+    spawn_link fn ->
+      Process.register self, :custom_server
       listen initial_stack
     end
   end
@@ -32,7 +33,7 @@ defmodule Stack.CustomServer do
   def listen(stack) do
     receive do
     after 2000 ->
-      IO.puts "nothing to do"
+      IO.puts "Nothing to do"
       listen stack
     end
   end
@@ -55,7 +56,7 @@ end
 
 ```elixir
   {sender, :pop}         -> handle_pop(sender, stack)
-  
+
   #...
   def handle_pop(sender, [head|tail]) do
     sender <- head
