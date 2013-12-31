@@ -1,8 +1,13 @@
 ## Show them what it will look like
-1. `iex customstack.exs`
-1. `iex> :custom_server <- { :push, 10 }`
-2. `iex> :custom_server <- { :self, :pop }`
-3. iex manual receive 
+
+### Start our customserver
+```elixir
+$> iex customstack.exs
+iex> :custom_server <- { :push, 10 }
+iex> :custom_server <- { :self, :pop }
+```
+
+###iex manual receive 
 
 ```elixir
 receive do
@@ -11,9 +16,9 @@ end
 ```
 
 ## Guided customstack.exs
-1. Module receive loop with after outputting "nothing received"
+### Module receive loop with after outputting "nothing received"
 
-```
+```elixir
 defmodule Stack.CustomServer do
   def start(initial_stack) do
     spawn_link fn -> 
@@ -32,21 +37,21 @@ defmodule Stack.CustomServer do
 end
 ```
 
-1. add receive push
+### add receive push
 
-```
+```elixir
   {:push, value} -> listen([value|stack])
 ```
 
-1. run iex and push value (cast())
+### run iex and push value (cast())
 
-```
+```elixir
 :custom_server <- { :push, 10 }
 ```
 
-1. add receive pop
+### add receive pop
 
-```
+```elixir
   {sender, :pop}         -> handle_pop(sender, stack)
   
   #...
@@ -56,10 +61,10 @@ end
   end
 ```
 
-1. run iex and pop value (call() - req/reply)
+### run iex and pop value (call() - req/reply)
 
-```
+```elixir
 :custom_server <- {self, :pop}
 ```
 
-1. crash - lots of logic leads us to use OTP applications
+### crash - lots of logic leads us to use OTP applications
