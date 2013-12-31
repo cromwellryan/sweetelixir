@@ -22,8 +22,8 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 * `$> elixir <filename>` means run the `elixir` command at terminal to execute the file.  These files will most likely be an `.exs`  or elixir script file.  These will usually be found within the `src/` folder for that particular module.
 
 ## [Basics][basics]
-1. Numbers, atoms, strings, lists, tuples, ...
-1. Functions
+1. [Numbers, atoms, strings, lists, tuples, ...][types]
+1. [Functions][functions]
 1. [Operators][operators]
 1. [Modules][modules]
 
@@ -34,7 +34,7 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 1. [Pattern Matching][pattern_matching]
 1. [Map/Reduce][map_reduce]
 1. [Pipeline][pipeline]
-1. Processes
+1. [Processes][processes]
 
 ## [Common Patterns/OTP][otp]
 
@@ -52,8 +52,12 @@ Most of this guide will use `iex` (interactive elixir).  We'll try to let you kn
 [otp]: ./10-otp/README.md
 [pattern_matching]: ./08-advanced/pattern_matching.md
 [records_protocols]: ./08-advanced/records_protocols.md
+[processes]: ./08-advanced/processes.md
 [map_reduce]: ./08-advanced/map_reduce.md
 [pipeline]: ./08-advanced/pipeline.md
 [cheetsheet]: http://media.pragprog.com/titles/elixir/ElixirCheat.pdf
 [operators]: ./07-basics/README.md#operators
+[functions]: ./07-basics/README.md#functions
+[types]: ./07-basics/README.md#types
 [modules]: ./07-basics/README.md#modules
+
