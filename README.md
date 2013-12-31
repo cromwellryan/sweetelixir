@@ -15,12 +15,6 @@
 1. [Setup][setup]
 1. [Tools][tools]
 
-## How to use
-Most of this guide will use `iex` (interactive elixir).  We'll try to let you know when we don't, but here are some guidelines...
-
-* `iex> command` means we're executing `command` in interactive elixir.
-* `$> elixir <filename>` means run the `elixir` command at terminal to execute the file.  These files will most likely be an `.exs`  or elixir script file.  These will usually be found within the `src/` folder for that particular module.
-
 ## [Basics][basics]
 1. [Numbers, atoms, strings, lists, tuples, ...][types]
 1. [Functions][functions]
