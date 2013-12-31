@@ -1,8 +1,10 @@
 ## Show them what it will look like
 
 ### Start our customserver
-```elixir
+```bash
 $> iex customstack.exs
+```
+```elixir
 iex> :custom_server <- { :push, 10 }
 iex> :custom_server <- { :self, :pop }
 ```
