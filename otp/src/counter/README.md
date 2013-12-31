@@ -1,3 +1,0 @@
-# Counter
-
-** TODO: Add description **
