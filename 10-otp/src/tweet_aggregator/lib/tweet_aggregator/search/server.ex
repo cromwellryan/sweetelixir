@@ -21,7 +21,7 @@ defmodule TweetAggregator.Search.Server do
       query.subscriber <- {:results, statuses}
       {:noreply, {timer, record_seen_ids(statuses, query)}}
     else
-      IO.puts "No new results"
+      IO.puts "Client: No new results"
       {:noreply, {timer, query}}
     end
   end

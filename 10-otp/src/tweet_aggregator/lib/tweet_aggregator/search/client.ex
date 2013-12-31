@@ -6,7 +6,7 @@ defmodule TweetAggregator.Search.Client do
   @base_url "https://api.twitter.com/1.1/"
   @limit 1
 
-  defrecord Status, id: nil, text: nil, username: nil
+  defrecord Status, id: nil, text: "", username: nil, hash_tags: [], mentions: []
   defrecord Query, subscriber: nil, keywords: [], options: [], seen_ids: []
 
   def server_name, do: :"#{node}_search_server"
