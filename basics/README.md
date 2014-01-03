@@ -9,7 +9,7 @@ comparison, boolean, arithmetic, and inclusion
   - +, -, *, /
   - in (inclusion operator)
 
-## Types (int, float, atom, tuple, list, binary)
+## Types
 
 ### Numbers
 
@@ -121,7 +121,8 @@ iex> Integer.parse "codemash"
 :error
 ```
 
-### Strings (binaries) and char lists (lists)
+### Strings
+... exist as strings (binaries) and char lists (lists)
 ```
 iex> is_list 'hello'
 true
