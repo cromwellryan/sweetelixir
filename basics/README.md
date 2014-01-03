@@ -11,7 +11,7 @@ comparison, boolean, arithmetic, and inclusion
 
 ## Types (int, float, atom, tuple, list, binary)
 
-**numbers**
+### Numbers
 
 ```
 iex> is_number 1
@@ -30,7 +30,7 @@ iex> is_float 1.0
 true
 ```
 
-### boolean
+### Boolean
 
 ```
 iex> is_boolean true && false
@@ -40,7 +40,8 @@ iex> is_boolean true and false
 true
 ```
 
-**atoms** are like Ruby *symbols*, but named after Lisp's *atom*
+### Atoms
+... are like Ruby *symbols*, but named after Lisp's *atom*
 
 ```
 iex> is_atom :thing
@@ -53,7 +54,8 @@ iex> :false == false
 true
 ```
 
-**lists** are linked lists
+### Lists
+... are linked lists
 ```
 iex> is_list [1,2,3]
 true
@@ -83,7 +85,7 @@ iex> h Stream
 ...
 ```
 
-**tuples**
+### Tuples
 ```
 iex> is_tuple {1,"b", :c}
 true
@@ -119,7 +121,7 @@ iex> Integer.parse "codemash"
 :error
 ```
 
-**strings (binaries) and char lists (lists)**
+### Strings (binaries) and char lists (lists)
 ```
 iex> is_list 'hello'
 true
@@ -141,7 +143,7 @@ iex> "hello #{who}"
 "hello codemash"
 ```
 
-**keyword lists**
+### Keyword lists
 ```
 iex> presenter = [name: 'Chris', project: 'Atlas']
 iex> Keyword.get presenter, :project
@@ -153,7 +155,7 @@ iex> head
 { :name, 'Chris' }
 ```
 
-**equality**
+### Equality
 
 ```
 iex> 1 == 1.0
