@@ -51,7 +51,7 @@ iex(client1@127.0.0.1)1> Node.connect :"aggregator@127.0.0.1"
 true
 NodeMonitor: aggregator@127.0.0.1 joined
 
-iex(client1@127.0.0.1)2> TweetAggregator.Search.Client.poll(:client1, ["elixir"], [])
+iex(client1@127.0.0.1)2> TweetAggregator.Search.Client.poll ["elixir"]
 New results
 Client: Got 1 result(s)
 ```
