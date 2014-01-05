@@ -51,6 +51,33 @@ chrismccord: Sweet Elixir!
 iex(5)>
 ```
 
+### Presence Protocol
+
+```elixir
+defprotocol Present do
+  def present?(data)
+end
+
+defimpl Present, for: [Integer, Float] do
+  def present?(_), do: true
+end
+
+defimpl Present, for: List do
+  def present?([]), do: false
+  def present?(_),  do: true
+end
+
+defimpl Present, for: Atom do
+  def present?(false), do: false
+  def present?(nil),   do: false
+  def present?(_),     do: true
+end
+
+defimpl Present, for: BitString do
+  def present?(string), do: String.length(string) > 0
+end
+```
+
 
 
 
