@@ -1,0 +1,10 @@
+# gem install guard
+# gem install guard-shell 
+# guard - watch the Magic™
+
+guard 'shell', :elixirc_bin => "/usr/local/elixirc" do
+  watch(/(.+\.ex$)/) { |m| `elixirc #{m[0]}` }
+end
+guard 'shell', :elixir_bin => "/usr/local/elixir" do
+  watch(/(.+\.exs)/) { |m| `elixir #{m[0]}` }
+end
