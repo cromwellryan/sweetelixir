@@ -41,7 +41,16 @@ defmodule Presenter do
     def modules, do: open "modules"
 
     defp open(hash), do: Presenter.open "basics/README.md##{hash}"
+  end
 
+  defmodule Advanced do
+    def mapred, do: open "map_reduce"
+    def pattern, do: open "pattern_matching"
+    def pipeline, do: open "pipeline"
+    def processes, do: open "processes"
+    def records, do: open "records_protocols"
+
+    defp open(section), do: Presenter.open "advanced/#{section}.md"
   end
 
   def open(section) do

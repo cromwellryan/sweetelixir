@@ -112,6 +112,7 @@ iex(3)> Maps.pmap [1, 2, 3], &(&1 * &1)
 [1, 4, 9]
 iex(4)>
 ```
+[Run it ./src/triangle_kata.exs][triangle_kata]
 
 ## Holding State
 Since Elixir is immutable, you may be wondering how state is held. Holding and mutating state can be performed by spawning a process that exposes its state via messages and infinitely recurses on itself with its current state. For example:
@@ -165,3 +166,5 @@ iex(30)> receive do
 ...(30)> end
 11
 ```
+
+[triangle_kata]: ./src/triangle_kata.exs
