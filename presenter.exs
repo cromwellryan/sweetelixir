@@ -34,6 +34,7 @@ defmodule Presenter do
     def list, do: open "lists"
     def tuples, do: open "tuples"
     def strings, do: open "strings"
+    def json_parser, do: System.cmd "open https://gist.github.com/cromwellryan/6349503/raw/0bac9dcbe6ea2c68f27d91c2a44034c7e4d3fb2c/parser.ex"
     def keywordlists, do: open "keyword-lists"
     def equality, do: open "equality"
     def functions, do: open "functions"
