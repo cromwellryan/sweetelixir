@@ -106,4 +106,38 @@ iex(13)> Countdown.run(10, 11)
 
 *Guard Clauses* are used with the postfix `when` on function definitions. Multiple functions with the same name can be defined because the guard becomes part of the function's unique signature. Each definition is pattern matched against when calling `run` until the first match is found. Patterm matching on functions is run from top to bottom, in the order the functions are defined.
 
+### Record Pattern Matching
+
+```elixir
+defrecord Person, gender: nil, name: ""
+
+defmodule PersonPrefixer do
+  def prefix(p = Person[gender: :male]), do: "Mr."
+  def prefix(p = Person[gender: :female]), do: "Mrs."
+end
+
+defmodule SharingMatchLogic do
+  defmacro is_male(p) do
+    ix = Person.__record__(:index, :gender)
+    quote do: elem(unquote(p), unquote(ix)) == :male
+  end
+  defmacro is_female(p) do
+    ix = Person.__record__(:index, :gender)
+    quote do: elem(unquote(p), unquote(ix)) == :female
+  end
+
+  def prefix(p = Person[]) when is_male(p), do: "Mr." # won't work
+  def prefix(p = Person[]) when is_female(p), do: "Mrs." # won't work
+end
+
+john = Person.new gender: :male, name: "John"
+jane = Person.new gender: :female, name: "Jane"
+
+PersonPrefixer.prefix(john) |> IO.puts
+PersonPrefixer.prefix(jane) |> IO.puts
+
+SharingMatchLogic.prefix(john) |> IO.puts
+SharingMatchLogic.prefix(jane) |> IO.puts
+
+```
 
