@@ -63,7 +63,7 @@ iex(5)>
 ### Function Pattern Matching
 Pattern matching is not just limited to bindings. Elixir uses pattern matching for anonymous and named function invocation as well.
 
-`src/countdown.ex`:
+[Run it][src_countdown] (./src/countdown.ex)
 ```elixir
 defmodule Countdown do
   def run(from, to) when from >= to do
@@ -108,6 +108,7 @@ iex(13)> Countdown.run(10, 11)
 
 ### Record Pattern Matching
 
+[Run it][src_record_pattern_match] (./src/pattern_match_records.exs)
 ```elixir
 defrecord Person, gender: nil, name: ""
 
@@ -141,3 +142,5 @@ SharingMatchLogic.prefix(jane) |> IO.puts
 
 ```
 
+[src_record_pattern_match]: ./src/pattern_match_records.exs
+[src_countdown]: ./src/countdown.ex
