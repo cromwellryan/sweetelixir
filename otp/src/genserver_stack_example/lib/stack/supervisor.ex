@@ -5,10 +5,10 @@ defmodule Stack.Supervisor do
     :supervisor.start_link(__MODULE__, [])
   end
 
-  def init([]) do
+  def init(initial_stack) do
     children = [
       # Define workers and child supervisors to be supervised
-      worker(Stack.Server, [1])
+      worker(Stack.Server, [initial_stack])
     ]
 
     # See http://elixir-lang.org/docs/stable/Supervisor.Behaviour.html

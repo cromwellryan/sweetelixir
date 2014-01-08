@@ -10,14 +10,17 @@ defmodule Stack.Server do
   end
 
   def handle_call(:pop, _from, []) do
+    IO.puts "Pop empty"
     {:reply, nil, []}
   end
 
-  def handle_call(:pop, _from, [head|tail]) do
+  def handle_call(:pop, from, [head|tail]) do
+    IO.puts "Pop from #{inspect from} with #{head}"
     {:reply, head, tail}
   end
 
   def handle_cast({:push, value}, stack) do
+    IO.puts "Pushing #{value}"
     {:noreply, [value|stack]}
   end
 end
