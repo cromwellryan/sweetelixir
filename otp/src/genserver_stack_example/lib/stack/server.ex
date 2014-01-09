@@ -33,7 +33,7 @@ defmodule Stack.Client do
   end
 
   def push(value) do
-    :gen_server.cast :stack_server, {:push, value}
+    :gen_server.cast {:global, :stack_server}, {:push, value}
   end
 
   def pop do
