@@ -3,13 +3,13 @@
 Pattern matching lives at the heart of the Erlang Virtual Machine. When binding or invoking a function, the VM is pattern matching on the provided expression.
 
 ```elixir
-iex(1)> a = 1
-1
-iex(2)> 1 = a
-1
-iex(3)> b = 2
-2
-iex(4)> ^a = b
+a = 1 # 1
+
+1 = a # 1
+
+b = 2 # 2
+
+^a = b
 ** (MatchError) no match of right hand side value: 2
 iex(5)> ^a = 1
 1
