@@ -4,10 +4,11 @@ Follow along - we'll be using `iex` (interactive elixir).
 
 ## Operators
 comparison, boolean, arithmetic, and inclusion
-  - ==, !=, ===, !==, >, <, <=, >=
-  - and, or, not, !
-  - +, -, *, /
-  - in (inclusion operator)
+
+  - `==, !=, ===, !==, >, <, <=, >=`
+  - `and, or, not, !`
+  - `+, -, *, /`
+  - `in` (inclusion operator)
 
 ## Types
 
@@ -171,7 +172,7 @@ true
 
 ## Functions
 
-Like most functional languages, functions in Elixir are first class and can be passed around 
+Like most functional languages, functions in Elixir are first class and can be passed around
 and invoked from other functions.
 
 ### Anonymous Functions
@@ -210,7 +211,7 @@ iex(6)> perform_calculation.(5, 5, fn a, b -> a * b end)
 25
 ```
 
-The shorthand syntax is useful when the function takes one or two arguments and performs a simple operation. 
+The shorthand syntax is useful when the function takes one or two arguments and performs a simple operation.
 More complex functions should use the general purpose syntax to optimize for clarity.
 
 ### Named Functions
@@ -248,8 +249,8 @@ iex(3)> add.(1, 2)
 iex(4)>
 ```
 
-Functions in Elixir are referenced by name and **arity**, or the number of arguments. The previous example captures 
-the `+` function from the `Kernel` module with arity 2, binds it to the `add` variable, and invokes it via the 
+Functions in Elixir are referenced by name and **arity**, or the number of arguments. The previous example captures
+the `+` function from the `Kernel` module with arity 2, binds it to the `add` variable, and invokes it via the
 dot notation.
 
 
