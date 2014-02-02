@@ -5,51 +5,52 @@ Two big modules:
 ### [Enum][enum]
 
 ```elixir
-iex(1)> ages  = [35, 34, 6, 5, 1, 1]
-[35, 34, 6, 5, 1, 1]
-iex(2)> add_20 = fn (age) -> age + 20 end
-#Function<6.80484245 in :erl_eval.expr/5>
-iex(3)> Enum.map ages, add_20
-[55, 54, 26, 25, 21, 21]
+ages  = [35, 34, 6, 5, 1, 1]
+add_10 = fn (age) -> age + 10 end
+Enum.map ages, add_10
+```
 
-iex(4)>
+Results in...
+```elixir
+[55, 54, 26, 25, 21, 21]
+```
+
+The Pipeline alternative might look like this:
+
+```elixir
 [2, 4, 6] |>
   Enum.map(&IO.inspect(&1)) |>
-  Enum.map(&(&1 *2)) |>
+  Enum.map(&(&1 * 10)) |>
   Enum.map(&IO.inspect(&1))
-
-2
-4
-6
-4
-8
-12
-[4, 8, 12]
 ```
 
 ### [Stream][stream]
 
 ```elixir
-iex(1)> ages  = [35, 34, 6, 5, 1, 1]
-[35, 34, 6, 5, 1, 1]
-iex(2)> add_20 = fn (age) -> age + 20 end
-#Function<6.80484245 in :erl_eval.expr/5>
-iex(3)> Stream.map ages, add_20
+ages  = [35, 34, 6, 5, 1, 1]
+add_20 = fn (age) -> age + 20 end
+Stream.map ages, add_20
+```
+
+Results in...
+```elixir
 Stream.Lazy[enum: [35, 34, 6, 5, 1, 1],
- funs: [#Function<32.133702391 in Stream.map/2>], accs: [], after: [],
+  funs: [#Function<32.133702391 in Stream.map/2>], accs: [], after: [],
   last: nil]
-  
-iex(2)>
+```
+
+Streams are composable and don't execute until asked to provide a value.
+```elixir
 stream = [2, 4, 6] |>
   Stream.map(&IO.inspect(&1)) |>
   Stream.map(&(&1 *2)) |>
   Stream.map(&IO.inspect(&1))
 
-Stream.Lazy[enum: [2, 4, 6],
- funs: [#Function<10.131393772 in Stream.map/2>,
-  #Function<10.131393772 in Stream.map/2>,
-  #Function<10.131393772 in Stream.map/2>], accs: []]
-iex(46)> Enum.to_list stream
+Enum.to_list stream
+```
+
+Results in...
+```elixir
 2
 4
 4
@@ -62,15 +63,20 @@ iex(46)> Enum.to_list stream
 The `[2, 4, 6]` showcases the ability to compose a stream as a series of transformations and evalute the operation as a single iteration. If you look closely, the order of operations changed from the Enum example because instead of iterating the list three separate times as the first example, the second transformation happens with a single iteration of the set.
 
 ```elixir
-iex(1)>
 next = fn (x) ->
- :timer.sleep 1000
- IO.puts "Hey #{x}"
- x + 1
+  x + 1
+end
+sleep = fn(x) -> 
+  :timer.sleep 1000
+  x
+end
+tap = fn(x) ->
+  IO.puts "Hey #{x}"
 end
 
-#Function<6.80484245 in :erl_eval.expr/5>
-iex(2)> Enum.take( Stream.iterate(0,next), 10)
+
+Stream.iterate(0,next) |> Stream.each(tap) |> Stream.each(sleep) |> Enum.take(10)
+
 Hey 0
 Hey 1
 Hey 2
@@ -86,9 +92,12 @@ Hey 8
 ## Reduce
 
 ```elixir
-iex(1)> Enum.reduce 1..10, 0, &(&1 + &2)
-55
-iex(2)> Enum.map_reduce([1, 2, 3], 0, fn(x, acc) -> { x * 2, 1 + acc } end)
+Enum.reduce 1..10, 0, &(&1 + &2)
+Enum.map_reduce([1, 2, 3], 0, fn(x, acc) -> { x * 2, 1 + acc } end)
+```
+
+Results in...
+```elixir
 {[2,4,6], 3}
 ```
 
