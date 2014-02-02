@@ -18,18 +18,18 @@ defmodule Stack.CustomServer do
   end
 
   def handle_pop(sender, [head|tail]) do
-    sender <- head
+    send sender, head
     listen tail
   end
 end
 
 defmodule Stack.CustomClient do
   def push(value) do
-    server_pid <- {:push, value}
+    send server_pid, {:push, value}
   end
 
   def pop do
-    server_pid <- {self, :pop}
+    send server_pid, {self, :pop}
     receive do
       value -> value
     end

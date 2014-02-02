@@ -6,8 +6,8 @@ $> iex customstack.exs
 ```
 ```elixir
 iex> Stack.CustomServer.start []
-iex> :custom_server <- { :push, 10 }
-iex> :custom_server <- { :self, :pop }
+iex> sned :custom_server, { :push, 10 }
+iex> send :custom_server, { :self, :pop }
 ```
 
 ###iex manual receive
@@ -49,7 +49,7 @@ end
 ### run iex and push value (cast())
 
 ```elixir
-:custom_server <- { :push, 10 }
+send :custom_server, { :push, 10 }
 ```
 
 ### add receive pop
@@ -59,7 +59,7 @@ end
 
   #...
   def handle_pop(sender, [head|tail]) do
-    sender <- head
+    send sender, head
     listen tail
   end
 ```
@@ -67,7 +67,7 @@ end
 ### run iex and pop value (call() - req/reply)
 
 ```elixir
-:custom_server <- {self, :pop}
+send :custom_server, {self, :pop}
 ```
 
 ### crash - lots of logic leads us to use OTP applications

@@ -44,14 +44,14 @@ defmodule TweetAggregator.GateKeeper do
   defp listen do
     receive do
       {sender, env_var} when env_var in @env_vars ->
-        sender <- System.get_env("TWEET_#{String.upcase(to_string(env_var))}")
-      {sender, _} -> {sender <- nil}
+        send sender, System.get_env("TWEET_#{String.upcase(to_string(env_var))}")
+      {sender, _} -> {send(sender, nil)}
     end
     listen
   end
 
   defp get(env_var) do
-    leader_pid <- {self, env_var}
+    send leader_pid, {self, env_var}
     receive do
       env_var -> env_var
     end

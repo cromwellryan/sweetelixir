@@ -18,7 +18,7 @@ defmodule TweetAggregator.Search.Server do
   def handle_info(:poll, {timer, query}) do
     {:ok, statuses} = Client.search(query.keywords, query.options)
     if new_results?(statuses, query) do
-      query.subscriber <- {:results, statuses}
+      send query.subscriber, {:results, statuses}
       {:noreply, {timer, record_seen_ids(statuses, query)}}
     else
       IO.puts "Client: No new results"

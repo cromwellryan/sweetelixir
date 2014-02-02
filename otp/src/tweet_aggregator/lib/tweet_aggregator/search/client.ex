@@ -18,7 +18,7 @@ defmodule TweetAggregator.Search.Client do
       keywords: keywords,
       options: options,
     ))
-    server_pid <- :poll
+    send server_pid, :poll
   end
   defp do_poll do
     receive do
