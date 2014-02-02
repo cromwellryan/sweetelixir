@@ -68,10 +68,10 @@ Fire up `iex` to run the Elixir shell. In iex, or "Iteractive Elixir," we can
 execute any valid Elixir expression and see the evaluated result.
 
 ```bash
-$ iex
-Erlang R16B (erts-5.10.1) [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+Erlang R16B03 (erts-5.10.4) [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
-Interactive Elixir (0.10.3) - press Ctrl+C to exit (type h() ENTER for help)
+Interactive Elixir (0.12.2) - press Ctrl+C to exit (type h() ENTER for help)
+$ iex
 iex(1)> IO.puts "Sweet Elixir!"
 Sweet Elixir!
 :ok
