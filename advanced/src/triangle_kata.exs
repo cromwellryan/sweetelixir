@@ -4,7 +4,7 @@ defmodule Maps do
   def map([h|t], func), do: [ func.(h) | map(t, func) ]
 
   def child(element, func, parent) do
-    parent <- func.(element)
+    send parent, func.(element)
   end
   defp spawn_children(collection, func) do
     map collection, fn element -> spawn(__MODULE__, :child, [element, func, self]) end
@@ -55,5 +55,5 @@ triangles = [
               { 12, 12, 12 },
             ]
 
-IO.inspect triangles |> Maps.pmap fn x -> {x, ClassifyShapes.classify(x)} end
+IO.inspect triangles |> Maps.pmap &ClassifyShapes.classify &1
 
