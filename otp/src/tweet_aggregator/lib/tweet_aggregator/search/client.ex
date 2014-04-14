@@ -12,7 +12,7 @@ defmodule TweetAggregator.Search.Client do
   def server_name, do: :"#{node}_search_server"
   def server_pid, do: Process.whereis(server_name)
 
-  def poll(keywords, options // []) do
+  def poll(keywords, options \\ []) do
     Supervisor.start_link(server_name, Query.new(
       subscriber: spawn(fn -> do_poll end),
       keywords: keywords,
@@ -33,7 +33,7 @@ defmodule TweetAggregator.Search.Client do
     Supervisor.stop(server_name)
   end
 
-  def search(keywords, options // []) do
+  def search(keywords, options \\ []) do
     count = Keyword.get options, :count, @limit
 
     get "search/tweets.json", count: count,
