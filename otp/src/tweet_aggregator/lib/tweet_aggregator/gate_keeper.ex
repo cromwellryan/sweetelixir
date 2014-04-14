@@ -16,7 +16,7 @@ defmodule TweetAggregator.GateKeeper do
 
      Leader Node:
      $ export TWEET_ACCESS_TOKEN="foo"
-     iex> TweetAggregator.GateKeeper.register_as_leader
+     iex> TweetAggregator.GateKeeper.become_leader
 
      Remote Client Node
      iex> TweetAggregator.GateKeeper.access_token
